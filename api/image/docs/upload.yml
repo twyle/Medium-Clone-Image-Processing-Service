@@ -1,0 +1,22 @@
+description: Upload an image
+tags:
+  - Image
+consumes:
+  - "multipart/form-data"
+produces:
+  - "application/json"
+security:
+  - APIKeyHeader: [ 'Authorization' ]
+parameters:
+  - name: "file"
+    description: "The image to upload"
+    required: true
+    in: "formData"
+    type: file
+responses:
+  200:
+    description: When the image is successfully uploaded.
+
+  400:
+    description: Fails to upload image due to bad request data
+
