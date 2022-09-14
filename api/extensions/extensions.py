@@ -1,9 +1,20 @@
 from flask_cors import CORS
 from flasgger import LazyString, Swagger
 from flask import request
+import boto3
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 cors = CORS()
+
+s3 = boto3.client(
+   "s3",
+   aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
+   aws_secret_access_key=os.environ['AWS_ACCESS_SECRET']
+)
 
 swagger_template = {
     "swagger": "2.0",

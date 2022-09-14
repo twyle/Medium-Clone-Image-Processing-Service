@@ -15,6 +15,11 @@ class BaseConfig():
     
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploaded-images')
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+    
+    S3_BUCKET = os.environ['S3_BUCKET']
+    AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY']
+    AWS_ACCESS_SECRET = os.environ['AWS_ACCESS_SECRET']
+    S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
 
 
 class DevelopmentConfig(BaseConfig):
