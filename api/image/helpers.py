@@ -108,14 +108,17 @@ def upload_image(file, email):
 def update_user(email: str, profile_pic: str):
     """Sets the users profile pic info."""
     user = User.query.filter_by(email=email).first()
-    user.profile_pic = profile_pic
-    db.session.commit()
+    if user:
+        user.profile_pic = profile_pic
+        db.session.commit()
+        print('updated profile pic')
 
  
 def handle_upload_image(file, email):
     """Handle image upload."""
     try:
         profile_pic = upload_image(file, email)
+        print(profile_pic)
     except (
         EmptyImageFile,
         IllegalFileType,
@@ -128,5 +131,5 @@ def handle_upload_image(file, email):
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     else:
-        update_profile_pic(profile_pic, email)
+        update_user(email, profile_pic)
         return jsonify({'Success': f'Profile pic for {email} set.'}), 200
