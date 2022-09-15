@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from .image.views import image
 from .helpers.helpers import set_flask_environment
-from .extensions.extensions import cors, swagger
+from .extensions.extensions import cors, swagger, db, ma
 from flasgger import LazyJSONEncoder
 
 
@@ -21,6 +21,8 @@ def create_app(script_info=None):
         return jsonify({'Hello': 'from the image processing service'}), 200
     
     cors.init_app(app)
+    db.init_app(app)
+    ma.init_app(app)
     
     app.register_blueprint(image, url_prefix='/api/v1/image')
     

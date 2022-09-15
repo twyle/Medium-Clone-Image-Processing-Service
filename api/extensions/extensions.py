@@ -4,11 +4,14 @@ from flask import request
 import boto3
 import os
 from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 load_dotenv()
 
-
 cors = CORS()
+db = SQLAlchemy()
+ma = Marshmallow()
 
 s3 = boto3.client(
    "s3",

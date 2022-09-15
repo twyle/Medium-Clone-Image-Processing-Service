@@ -9,10 +9,15 @@ security:
   - APIKeyHeader: [ 'Authorization' ]
 parameters:
   - name: "file"
-    description: "The image to upload"
-    required: true
+    description: "User's profile picture"
+    required: false
     in: "formData"
     type: file
+  - name: "email"
+    description: "The user email"
+    required: true
+    in: "formData"
+    type: string
 responses:
   200:
     description: When the image is successfully uploaded.

@@ -11,4 +11,4 @@ def upload_image():
     """Upload an image."""
     if 'file' not in request.files:
         return jsonify({'error': 'No file has been uploaded'})
-    return handle_upload_image(request.files['file'])
+    return handle_upload_image(request.files['file'], request.form.get('email'))
