@@ -19,16 +19,17 @@
   <img title="Bandit badge" alt="Bandit badge" src="https://img.shields.io/badge/gunicorn-%298729.svg?style=flat&logo=gunicorn&logoColor=white" />
 </p>
 
-![](assets/images/email_service.png)
+![](assets/images/image_service.png)
 
 ## Project Overview
 This an image processing service that resizes and uploads images to AWS S3.
 
 ## Working 
 
-You can use it with [user management system](https://github.com/twyle/user-management-service) that enables the user to register an account. The image uploaded is stored locally in a folder, resized and also uploaded to AWS S3. To use the application locally:
+This service allows a user to register for an account using their email address, user name ad a profile picture. The picture is then optionally resized and uploaded to amazon s3. To use it:
 
- 1. Just select a file from your computer then it will be uploaded.
+ 1. Register for an account by submitting your details using the register route.
+ 2. You can update your details using the update route.
 
  <p align=center>
   <img src="assets/videos/image-service.gif" />
@@ -90,16 +91,34 @@ Here is how to set up the application locally:
 
       ```sh
 
-        FLASK_APP=manage.py
-        FLASK_DEBUG=True
-        FLASK_ENV=development
+      FLASK_APP=manage.py
+      FLASK_DEBUG=True
+      FLASK_ENV=development
+
+      S3_BUCKET=flask-image-service
+      AWS_ACCESS_KEY=AKIATSBC6QTDCUKUHJUX
+      AWS_ACCESS_SECRET=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
+
+      POSTGRES_HOST=db
+      POSTGRES_USER=lyle
+      POSTGRES_PASSWORD=lyle
+      POSTGRES_DB=image-service
+      POSTGRES_PORT=5432
+
+      CELERY_RESULT_BACKEND=redis://redis:6379/0
+      CELERY_BROKER_URL=redis://redis:6379/0
 
       ```
 
   7. Start the services:
 
       ```sh
-      python manage.py run
+      docker-compose -f docker-compose-dev.yml up --build
+      ```
+  8. Create the database:
+
+      ```sh
+      docker-compose -f docker-compose-dev.yml exec image-service python manage.py create_db
       ```
 
   8. View the running application
@@ -122,9 +141,10 @@ Here is how to set up the application locally:
 
         | Route                   | Method  | Description                 |
         | ------------------------| ------- |---------------------------- |
-        | 'api/v1/image/upload'   | POST    | Upload image to S3.         |
+        | 'api/v1/auth/register'  | POST    | Register a new user         |
+        | 'api/v1/user/           | POST    | Update a new user           |
         
-        1. Just select an image and it will be uploaded. 
+        1. Just enter user details and select an image and it will be uploaded. 
 
         This service uses AWS S3 to store the images.
 
@@ -170,8 +190,22 @@ The development workflow follows the following steps:
 The workflows require a couple of secrets to work:
 
       ```sh
-        FLASK_APP=manage.py
-        FLASK_ENV=development
+      FLASK_APP=manage.py
+      FLASK_DEBUG=True
+      FLASK_ENV=development
+
+      S3_BUCKET=flask-image-service
+      AWS_ACCESS_KEY=AKIATSBC6QTDCUKUHJUX
+      AWS_ACCESS_SECRET=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
+
+      POSTGRES_HOST=db
+      POSTGRES_USER=lyle
+      POSTGRES_PASSWORD=lyle
+      POSTGRES_DB=image-service
+      POSTGRES_PORT=5432
+
+      CELERY_RESULT_BACKEND=redis://redis:6379/0
+      CELERY_BROKER_URL=redis://redis:6379/0
 
       ```
 
