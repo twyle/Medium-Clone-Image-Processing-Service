@@ -11,9 +11,7 @@ class BaseConfig():
 
     DEBUG = False
     TESTING = False
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-    
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploaded-images')
+
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     
     S3_BUCKET = os.environ['S3_BUCKET']
@@ -30,6 +28,18 @@ class BaseConfig():
     db_conn_string = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
     SQLALCHEMY_DATABASE_URI = db_conn_string
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
+    CELERY_BROKER_URL=os.environ['CELERY_BROKER_URL']
+    CELERY_RESULT_BACKEND=os.environ['CELERY_RESULT_BACKEND']
+    
+    EMAIL_MAX_LENGTH = int(os.getenv("EMAIL_MAX_LENGTH", "64"))
+    EMAIL_MIN_LENGTH = int(os.getenv("EMAIL_MIN_LENGTH", "8"))
+
+    NAME_MAX_LENGTH = int(os.getenv("NAME_MAX_LENGTH", "20"))
+    NAME_MIN_LENGTH = int(os.getenv("NAME_MIN_LENGTH", "2"))
+    
+    NAME_MAX_LENGTH = int(os.getenv("NAME_MAX_LENGTH", "20"))
+    NAME_MIN_LENGTH = int(os.getenv("NAME_MIN_LENGTH", "2"))
 
 
 class DevelopmentConfig(BaseConfig):

@@ -1,0 +1,34 @@
+description: Update User.
+tags:
+  - User
+produces:
+  - "application/json"  
+parameters:
+  - in: query
+    description: The query should contain the user id
+    required: true
+    name: 'id'
+    type: 'string'
+  - name: "User Name"
+    description: "The user name"
+    required: false
+    in: "formData"
+    type: string
+  - name: "Email"
+    description: "The user email"
+    required: false
+    in: "formData"
+    type: string
+  - name: "Profile Picture"
+    description: "User's profile picture"
+    required: false
+    in: "formData"
+    type: file  
+
+responses:
+  201:
+    description: When a user succesfully updates.
+
+  400:
+    description: Fails to update due to bad request data
+

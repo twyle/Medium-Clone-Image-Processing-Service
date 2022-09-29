@@ -1,0 +1,31 @@
+description: User Registration
+tags:
+  - Authentication
+produces:
+  - "application/json"  
+parameters:
+  - name: "User Name"
+    description: "The user name"
+    required: true
+    in: "formData"
+    type: string
+  - name: "Email"
+    description: "The user email"
+    required: true
+    in: "formData"
+    type: string
+  - name: "Profile Picture"
+    description: "User's profile picture"
+    required: false
+    in: "formData"
+    type: file  
+
+responses:
+  201:
+    description: When a user succesfully registers.
+
+  400:
+    description: Fails to Register due to bad request data
+
+  409:
+    description: Fails to Register since user with given details exists.
