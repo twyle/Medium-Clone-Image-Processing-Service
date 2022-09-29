@@ -96,8 +96,8 @@ Here is how to set up the application locally:
       FLASK_ENV=development
 
       S3_BUCKET=flask-image-service
-      AWS_ACCESS_KEY=AKIATSBC6QTDCUKUHJUX
-      AWS_ACCESS_SECRET=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
+      AWS_ACCESS_KEY=<AWS_ACCESS_KEY>
+      AWS_ACCESS_SECRET=<AWS_ACCESS_SECRET>
 
       POSTGRES_HOST=db
       POSTGRES_USER=lyle
@@ -195,8 +195,8 @@ The workflows require a couple of secrets to work:
       FLASK_ENV=development
 
       S3_BUCKET=flask-image-service
-      AWS_ACCESS_KEY=AKIATSBC6QTDCUKUHJUX
-      AWS_ACCESS_SECRET=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
+      AWS_ACCESS_KEY=<AWS_ACCESS_KEY>
+      AWS_ACCESS_SECRET=<AWS_ACCESS_SECRET>
 
       POSTGRES_HOST=db
       POSTGRES_USER=lyle
